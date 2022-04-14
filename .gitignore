@@ -1,4 +1,4 @@
-/compiled
-/run
+compiled/
+run/
 partial_parse.msgpack
 graph.gpickle
