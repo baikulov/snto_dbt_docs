@@ -20,9 +20,7 @@ SELECT
   adGroupName,
   adSource
 FROM dwh_site.CostData
-
-	where date >= toDate(NOW()) - 3
-
+where date >= toDate(NOW()) - 2
 GROUP BY
   source,
   medium,

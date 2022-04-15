@@ -22,9 +22,7 @@ WITH cte as (
         dwh_site.owoxbi_sessions
 	LEFT ARRAY JOIN
 	    hits
-	
-	where date >= toDate(NOW()) - 3
-	
+	where date = toDate(NOW()) - 10
 )
 SELECT
     date,
@@ -34,4 +32,8 @@ FROM cte
 LEFT ARRAY JOIN hits.page.hostname
 WHERE
 	hits.page.hostname like '%sant-on%'
+GROUP BY
+	date,
+    sessionId,
+    type
   )

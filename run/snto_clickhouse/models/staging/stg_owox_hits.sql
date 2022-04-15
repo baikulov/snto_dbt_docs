@@ -33,9 +33,7 @@ WITH cte as (
         hits.page.pageTitle
     FROM dwh_site.owoxbi_sessions
     LEFT ARRAY JOIN hits
-    
-	where date >= toDate(NOW()) - 1
-	
+	where date >= toDate(NOW()) - 2
     AND hits.type in ('pageview', 'event')
     -- группируем чтобы исключить случайные дубли, потому что после назначения последовательностей они закрепятся
     GROUP BY 

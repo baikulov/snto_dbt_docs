@@ -20,9 +20,7 @@ FROM
   dwh_site.owoxbi_sessions
 LEFT ARRAY JOIN
     device
-  
-	where date >= toDate(NOW()) - 3
-	
+	where date = toDate(NOW()) - 10
 AND
  device.deviceCategory like '%robot%'
 GROUP BY
