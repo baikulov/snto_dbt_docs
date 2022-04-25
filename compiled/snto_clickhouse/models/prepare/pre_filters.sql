@@ -23,11 +23,6 @@ SELECT
   max(type) as type
 FROM cte
 
-
-  -- this filter will only be applied on an incremental run
-  where date not in (select distinct date from analytics_dev.pre_filters)
-
-
 GROUP BY
   date,
   sessionId
