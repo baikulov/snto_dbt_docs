@@ -6,9 +6,8 @@
   
     
     engine = MergeTree()
-    
-    order by (tuple())
-    
+    order by (hitType,pagePath)
+    partition by (date)
   as (
     
 WITH cte as (
@@ -60,23 +59,23 @@ df as (
     LEFT ARRAY JOIN hits.eventInfo.eventCategory, hits.eventInfo.eventAction, hits.eventInfo.eventLabel, hits.eventInfo.eventValue, hits.page.hostname, hits.page.pageTitle
 )
 SELECT
-    date,
-    clientId,
-    sessionId,
-    hitId,
-    hitTimestamp,
-    hitType,
+   date,
+    ifNull(clientId, '') as clientId,
+    ifNull(sessionId, '') as sessionId,
+    ifNull(hitId, '') as hitId,
+    ifNull(hitTimestamp, 0) as hitTimestamp,
+    ifNull(hitType, '') as hitType,
     isInteraction,
-    referer,
-    referralPath,
-    eventCategory,
-    eventAction,
-    eventLabel,
-    eventValue,
-    hostname,
-    pageUrl,
-    pagePath,
-    pageTitle
+    ifNull(referer, '') as referer,
+    ifNull(referralPath, '') as referralPath,
+    ifNull(eventCategory, '') as eventCategory,
+    ifNull(eventAction, '') as eventAction,
+    ifNull(eventLabel, '') as eventLabel, 
+    ifNull(eventValue, '') as eventValue,
+    ifNull(hostname, '') as hostname,
+    ifNull(pageUrl, '') as pageUrl,
+    ifNull(pagePath, '') as pagePath,
+    ifNull(pageTitle, '') as pageTitle
 FROM df
 GROUP BY
     date,

@@ -3,7 +3,7 @@
     
 
 select *
-from analytics_dev.stg_owox_hits
+from analytics_prod.stg_owox_hits
 where pagePath is null
 
 
